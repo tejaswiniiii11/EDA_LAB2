@@ -1,0 +1,48 @@
+print("Tejaswini.M, 23BAD121")
+
+library(ggplot2)
+library(dplyr)
+library(lubridate)
+
+df <- read.csv("ecommerce_transactions.csv")
+df$Transaction_Date <- as.Date(df$Transaction_Date)
+
+# Histogram of Transaction Amounts
+ggplot(df, aes(x = Transaction_Amount)) +
+  geom_histogram(bins = 20, fill = "skyblue", color = "black") +
+  labs(
+    title = "Histogram of Transaction Amounts",
+    x = "Transaction Amount",
+    y = "Frequency"
+  ) +
+  theme_minimal()
+
+# Boxplot of Transaction Amounts
+ggplot(df, aes(y = Transaction_Amount)) +
+  geom_boxplot(fill = "lightgreen", color = "black") +
+  labs(
+    title = "Boxplot of Transaction Amounts",
+    y = "Transaction Amount"
+  ) +
+  theme_minimal()
+
+# Heatmap data preparation
+heatmap_data <- df %>%
+  mutate(Month = month(Transaction_Date, label = TRUE, abbr = FALSE)) %>%
+  group_by(Product_Category, Month) %>%
+  summarise(
+    Total_Sales = sum(Transaction_Amount, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+# Heatmap visualization
+ggplot(heatmap_data, aes(x = Month, y = Product_Category, fill = Total_Sales)) +
+  geom_tile(color = "white") +
+  scale_fill_gradient(low = "lightyellow", high = "darkblue") +
+  labs(
+    title = "Heatmap of Monthly Sales Intensity",
+    x = "Month",
+    y = "Product Category",
+    fill = "Total Sales"
+  ) +
+  theme_minimal()
