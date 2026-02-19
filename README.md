@@ -1,98 +1,107 @@
-**IMPLEMENTATION OF DATA VISUALIZATION TECHNIQUES**
+# EXPLORATION OF DATA DISTRIBUTION & VARIABILITY USING R
 
-**Name: Tejaswini M
+**Name:** Tejaswini M  
+**Register Number:** 23BAD121  
+**Course:** Artificial Intelligence & Data Science  
 
-Register Number: 23BAD121**
+----------------------------------------------
 
-Course: Artificial Intelligence & Data Science
+## 📌 Project Overview
 
-📌 Project Overview
+This project explores data distribution and variability using advanced visualization techniques.
 
-This project performs exploratory data analysis (EDA) on an e-commerce transactions dataset using R.
-It focuses on understanding transaction amounts, detecting outliers, and visualizing monthly sales trends across product categories.
+A startup analyzes e-commerce transaction data to understand customer spending behavior and detect abnormal purchase patterns.
 
-🗂️ Dataset Information
+The lab demonstrates how histograms, boxplots, and heatmaps help identify trends, variability, and outliers in transaction data.
 
-File name: 2.ecommerce_transactions.csv
+-------------------------------------------------
 
-Type: CSV file containing transaction-level data
+## 🗂️ Dataset Information
 
-📄 Key Attributes (Expected)
+**File Name:** `2.ecommerce_transactions.csv`  
+**Type:** CSV file containing e-commerce transaction records  
 
-Transaction_Date – Date of transaction
+-------------------------------------------------
 
-Transaction_Amount – Value of each transaction
+## 📄 Key Attributes
 
-Product_Category – Category of the purchased product
+- **Transaction_Date** – Date of purchase  
+- **Transaction_Amount** – Value of each transaction  
+- **Product_Category** – Category of purchased product  
 
-🛠️ Tools & Libraries Used
+The dataset represents transaction-level data used to analyze customer spending patterns.
 
-R
+-------------------------------------------------
 
-RStudio / Google Colab
+## 🛠️ Tools & Libraries Used
 
-Libraries:
+### Software
+- R  
+- RStudio  
 
-ggplot2 – Data visualization
+### Libraries
+- `ggplot2` – Data visualization  
+- `dplyr` – Data manipulation  
+- `lubridate` – Date handling and month extraction  
 
-dplyr – Data manipulation
+------------------------------------------------
 
-lubridate – Date handling and extraction
+## ⚙️ Implementation Steps
 
-⚙️ Steps Performed
+### 1️⃣ Data Loading & Preprocessing
 
-1️⃣ Load Required Libraries
-library(ggplot2)
-library(dplyr)
-library(lubridate)
+- Imported dataset using `read.csv()`  
+- Converted `Transaction_Date` into Date format  
+- Used `lubridate::month()` to extract month for time-based analysis  
 
-2️⃣ Read the Dataset
-df <- read.csv("2.ecommerce_transactions.csv")
+------------------------------------------------
 
-3️⃣ Date Conversion
+### 2️⃣ Histogram – Transaction Amount Distribution
 
-The transaction date is converted into R’s Date format for time-based analysis.
+- Plotted histogram using `geom_histogram()`  
+- Used 20 bins to visualize spending distribution  
+- Analyzed frequency of different transaction ranges  
 
-df$Transaction_Date <- as.Date(df$Transaction_Date)
+📊 **Output:** Histogram of Transaction Amounts  
 
-4️⃣ Histogram of Transaction Amounts
+------------------------------------------------
 
-Displays the distribution of transaction values
+### 3️⃣ Boxplot – Outlier Detection
 
-Helps understand spending patterns
+- Plotted boxplot using `geom_boxplot()`  
+- Visualized median, quartiles, and spread  
+- Identified abnormal high or low transactions  
 
-📊 Visualization: Histogram
+📊 **Output:** Boxplot of Transaction Amounts  
 
-5️⃣ Boxplot of Transaction Amounts
+------------------------------------------------
 
-Identifies outliers
+### 4️⃣ Heatmap – Monthly Sales Intensity
 
-Shows data spread and median
+- Extracted month from transaction date  
+- Grouped data by Product_Category and Month  
+- Calculated total sales per month per category  
+- Used `geom_tile()` to create heatmap  
 
-📦 Visualization: Boxplot
+📊 **Output:** Heatmap of Monthly Sales Intensity  
 
-6️⃣ Monthly Sales Heatmap Preparation
+------------------------------------------------
 
-Extracts month from transaction date
+## 📈 Visualizations Generated
 
-Aggregates total sales per product category per month
+- Histogram of transaction amounts  
+- Boxplot for outlier detection  
+- Heatmap of monthly sales intensity by product category  
 
-mutate(Month = month(Transaction_Date, label = TRUE, abbr = FALSE))
+All visualizations were created using `ggplot2`.
 
-7️⃣ Heatmap of Monthly Sales Intensity
+------------------------------------------------
 
-Shows sales intensity across months and product categories
+## 🎯 Key Insights
 
-Darker colors indicate higher sales
+- Histogram reveals spending distribution patterns.  
+- Boxplot helps detect abnormal transactions or outliers.  
+- Heatmap highlights high and low sales months across product categories.  
 
-🔥 Visualization: Heatmap
+These techniques assist businesses in identifying customer behavior trends and potential risk patterns.
 
-📈 Visualizations Generated
-
-Histogram of Transaction Amounts
-
-Boxplot of Transaction Amounts
-
-Heatmap of Monthly Sales by Product Category
-
-All visualizations appear in the Plots tab.
